@@ -5,4 +5,4 @@
  * @author henrytu
  *
  */
-package org.neabulae.sfmap;
+package org.naebulae.util;
