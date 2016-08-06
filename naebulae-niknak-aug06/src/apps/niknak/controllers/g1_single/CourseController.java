@@ -1,6 +1,10 @@
 package apps.niknak.controllers.g1_single;
 
+import java.io.File;
+import java.util.List;
+
 import org.neabulae.rmap.RequestNumber;
+import org.neabulae.sfmap.StaticFileMapperIcon;
 
 @RequestNumber("1")
 public class CourseController  extends __Perspective1 
@@ -10,7 +14,14 @@ public class CourseController  extends __Perspective1
 	public void indexAction()
 	throws Exception
 	{
+		StaticFileMapperIcon db = this.helper(StaticFileMapperIcon.class);
 		
+		List<File> files = db.readFiles();
+		for(File fk: files)
+		{
+			String lk = this.baseUri("/reform/icons/") + fk.getName();
+			out.image(lk, "image");
+		}
 	}
 	
 	@RequestNumber("2")

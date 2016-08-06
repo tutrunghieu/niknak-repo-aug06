@@ -7,6 +7,7 @@ import org.neabulae.rmap.RequestTarget;
 public class __Perspective1 extends RequestTarget
 {
 	protected void renderMethod(Method m)
+	throws Exception
 	{
 		response.reset();
 		response.setCharacterEncoding("UTF-8");
@@ -82,17 +83,19 @@ public class __Perspective1 extends RequestTarget
 	}
 
 	private void renderContent(Method m) 
+	throws Exception
 	{
 		out.println("<div class='panel panel-default'>");
 		
-		{
-			out.println("<div class='panel-heading'>");
-			out.h3("Title and content; search bar; filter bar;");
-			out.println("</div>");					
-		}
+//		{
+//			out.println("<div class='panel-heading'>");
+//			out.h3("Title and content; search bar; filter bar;");
+//			out.println("</div>");					
+//		}
 		
 		{
 			out.println("<div class='panel-body'>");		
+			m.invoke(this);
 			out.println("</div>");			
 		}
 		

@@ -6,6 +6,8 @@ import java.io.FileInputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.URLConnection;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -29,6 +31,17 @@ public class StaticFileMapper
 	public File getAbsoluteFile(String file) 
 	{
 		return new File( this.folderPrefix + file );
+	}
+	
+	public List<File> readFiles() 
+	{
+		List<File> res = new ArrayList<File>();
+		
+		File[] files = (new File(this.folderPrefix)).listFiles();
+		
+		if(files != null) for(File fj: files) res.add(fj);
+		
+		return res;
 	}
 	
 	
