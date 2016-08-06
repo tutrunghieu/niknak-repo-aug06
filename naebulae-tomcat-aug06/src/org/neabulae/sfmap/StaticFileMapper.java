@@ -16,10 +16,12 @@ import org.apache.poi.util.IOUtils;
 public class StaticFileMapper 
 {
 	public String folderPrefix = "/null-folder/" + this.getClass().getName();
+	private String actionPrefix = "reform/view";
 	
-	public StaticFileMapper(File f)
+	public StaticFileMapper(File f, String act)
 	{
 		folderPrefix = f.getAbsolutePath();
+		actionPrefix = act;
 	}
 
 
@@ -69,5 +71,9 @@ public class StaticFileMapper
 		this.writeFile(f, response.getOutputStream());		
 	}
 
+	public String completeLink(String base, String name)
+	{
+		return base + "/" + actionPrefix + "/" + name;
+	}
 
 }

@@ -32,6 +32,26 @@ public class __Perspective1 extends RequestTarget
 		out.println("</div>");
 		out.println("</body>");		
 	}
+	
+	protected void renderToolBar() 
+	{
+		
+		out.println("<nav class='navbar navbar-default navbar-static-top'>");
+		out.anchor("courses", super.baseUri() + "/course");
+		
+	
+		out.middot2();
+		out.anchor("outlets", super.baseUri() + "/outlet");
+		
+		out.middot2();
+		out.anchor("workers", super.baseUri() + "/worker");		
+
+		out.middot2();
+		out.anchor("orders", super.baseUri() + "/order");
+		out.println("</nav>");
+		
+	}
+	
 
 	private void renderLeftMenu(Method m) 
 	{
@@ -85,42 +105,8 @@ public class __Perspective1 extends RequestTarget
 	private void renderContent(Method m) 
 	throws Exception
 	{
-		out.println("<div class='panel panel-default'>");
-		
-//		{
-//			out.println("<div class='panel-heading'>");
-//			out.h3("Title and content; search bar; filter bar;");
-//			out.println("</div>");					
-//		}
-		
-		{
-			out.println("<div class='panel-body'>");		
-			m.invoke(this);
-			out.println("</div>");			
-		}
-		
-		out.println("</div>");		
+		m.invoke(this);
 	}
 
-	protected void renderToolBar() 
-	{
-		
-		out.println("<nav class='navbar navbar-default navbar-static-top'>");
-		out.anchor("courses", super.baseUri() + "/course");
-		
-		out.middot2();
-		out.anchor("images", super.baseUri() + "/image");
-		
-		out.middot2();
-		out.anchor("outlets", super.baseUri() + "/outlet");
-		
-		out.middot2();
-		out.anchor("workers", super.baseUri() + "/worker");		
-
-		out.middot2();
-		out.anchor("orders", super.baseUri() + "/order");
-		out.println("</nav>");
-		
-	}
 
 }

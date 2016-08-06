@@ -4,14 +4,14 @@ import java.io.File;
 
 public class StaticFileMapperImage extends StaticFileMapper
 {
-	public StaticFileMapperImage(File f) 
+	public StaticFileMapperImage(File f, String act) 
 	{
-		super(f);
+		super(f, act);
 	}
 
-	public StaticFileMapperImage(String f) 
+	public StaticFileMapperImage(String f, String act) 
 	{
-		super(new File(f));
+		super(new File(f), act);
 	}
 
 }

@@ -18,12 +18,32 @@ public class CourseController  extends __Perspective1
 		
 		List<File> files = db.readFiles();
 		for(File fk: files)
+		if(!fk.getName().endsWith(".txt"))
 		{
-			String lk = this.baseUri("/reform/icons/") + fk.getName();
-			out.image(lk, "image");
+			String lk = db.completeLink(this.baseUri(), fk.getName() );
+			printImage(fk);
 		}
 	}
 	
+	private void printImage(File fk) 
+	{
+		
+		out.println("<div class='col-md-3'>");
+		
+		out.println("<div class='panel panel-default'>");
+		out.println("<div class='panel-body'>");
+		out.image(lk, "image");				
+		out.println("</div>");
+		
+		out.println("<div class='panel-footer'>");
+		out.println(fk.getName());
+		out.println("</div>");
+		
+		out.println("</div>");
+		
+		out.println("</div>");
+	}
+
 	@RequestNumber("2")
 	public void addAction()
 	throws Exception
