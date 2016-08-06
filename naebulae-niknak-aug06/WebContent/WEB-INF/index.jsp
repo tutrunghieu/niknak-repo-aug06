@@ -1,0 +1,1 @@
+<%apps.niknak.AppMain.processRequest(request, response);%>
