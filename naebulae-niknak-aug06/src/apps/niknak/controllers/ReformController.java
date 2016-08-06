@@ -1,10 +1,14 @@
 package apps.niknak.controllers;
 
+import java.io.File;
 import java.util.List;
 import java.util.Map;
 
 import org.neabulae.rmap.RequestNumber;
 import org.neabulae.rmap.RequestTarget;
+import org.neabulae.sfmap.StaticFileMapper;
+import org.neabulae.sfmap.StaticFileMapperIcon;
+import org.neabulae.sfmap.StaticFileMapperImage;
 
 import apps.niknak.services.ExcelDataAccess;
 import apps.niknak.services.List2;
@@ -12,8 +16,37 @@ import apps.niknak.services.List2;
 @RequestNumber("1")
 public class ReformController  extends RequestTarget 
 {
+	@RequestNumber("1")
+	public void iconsAction()
+	throws Exception
+	{
+		StaticFileMapper m = this.helper(StaticFileMapperIcon.class);
+		
+		String file = super.removeFirst(3);
+		out.p("p1:" + file);
+		
+		File f = m.getAbsoluteFile(file);
+		out.p("p2:" + file);
+		
+		m.writeFile(f, response);		
+	}
 	
 	@RequestNumber("2")
+	public void imagesAction()
+	throws Exception
+	{
+		StaticFileMapper m = this.helper(StaticFileMapperImage.class);
+		
+		String file = super.removeFirst(3);
+		out.p("p1:" + file);
+		
+		File f = m.getAbsoluteFile(file);
+		out.p("p2:" + file);
+		
+		m.writeFile(f, response);		
+	}
+	
+	@RequestNumber("3")
 	public void viewAction()
 	throws Exception
 	{

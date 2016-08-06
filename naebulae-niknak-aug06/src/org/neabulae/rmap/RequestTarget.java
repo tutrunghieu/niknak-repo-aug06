@@ -105,5 +105,12 @@ public class RequestTarget
 		return "/" + requestUri.split("\\/")[1];
 	}
 
+	public String removeFirst(int kpar) 
+	{
+		int pk = 0;
+		String uri = requestUri;
+		for(int k=0; k<kpar; k++) pk = uri.indexOf('/', pk+1);
+		return requestUri.substring(pk);
+	}
 
 }

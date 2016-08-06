@@ -24,4 +24,9 @@ public class RequestHeplers
 		helpers.put(cl, v);
 	}
 
+	public int size() 
+	{
+		return helpers.size();
+	}
+
 }

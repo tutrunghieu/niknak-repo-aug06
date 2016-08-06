@@ -1,5 +1,6 @@
 package apps.niknak;
 
+import java.io.File;
 import java.lang.reflect.Method;
 
 import javax.servlet.http.HttpServletRequest;
@@ -9,6 +10,8 @@ import org.neabulae.rmap.RequestEntry;
 import org.neabulae.rmap.RequestHeplers;
 import org.neabulae.rmap.RequestMapper;
 import org.neabulae.rmap.RequestTarget;
+import org.neabulae.sfmap.StaticFileMapperIcon;
+import org.neabulae.sfmap.StaticFileMapperImage;
 
 import apps.niknak.controllers.HomeController;
 
@@ -19,12 +22,22 @@ public class AppMain
 	
 	public static void processRequest(HttpServletRequest request, HttpServletResponse response)
 	{
+		if(helpers.size()==0)
+		{
+			helpers.put(StaticFileMapperIcon.class, 
+					new StaticFileMapperIcon("C:/opt/data-icons"));
+			
+			helpers.put(StaticFileMapperImage.class, 
+					new StaticFileMapperImage("C:/opt/data-images"));
+		}
+				
 		try 
 		{
 			Class<? extends RequestTarget> r =  mapper.findTargetController(request.getRequestURI(), HomeController.class);
 			System.out.println("Switching to: " + r.getName());
 		
 			RequestTarget tar = r.newInstance();
+			
 			
 			tar.enrichRequest(mapper, helpers, request, response);			
 			tar.processRequest();
