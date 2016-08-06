@@ -17,6 +17,20 @@ import apps.niknak.services.List2;
 public class ReformController  extends RequestTarget 
 {
 	@RequestNumber("1")
+	public void jsonAction()
+	throws Exception
+	{
+		StaticFileMapper m = this.helper(StaticFileMapperIcon.class);
+		
+		String file = super.removeFirst(3);
+		out.p("p1:" + file);
+		
+		File f = m.getAbsoluteFile(file);
+		out.p("p2:" + file);
+		
+		m.writeFile(f, response);		
+	}	
+	@RequestNumber("1")
 	public void iconsAction()
 	throws Exception
 	{
