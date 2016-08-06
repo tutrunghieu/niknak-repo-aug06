@@ -21,28 +21,10 @@ public class CourseController  extends __Perspective1
 		if(!fk.getName().endsWith(".txt"))
 		{
 			String lk = db.completeLink(this.baseUri(), fk.getName() );
-			printImage(fk);
+			printImage(fk, lk);
 		}
 	}
-	
-	private void printImage(File fk) 
-	{
-		
-		out.println("<div class='col-md-3'>");
-		
-		out.println("<div class='panel panel-default'>");
-		out.println("<div class='panel-body'>");
-		out.image(lk, "image");				
-		out.println("</div>");
-		
-		out.println("<div class='panel-footer'>");
-		out.println(fk.getName());
-		out.println("</div>");
-		
-		out.println("</div>");
-		
-		out.println("</div>");
-	}
+
 
 	@RequestNumber("2")
 	public void addAction()

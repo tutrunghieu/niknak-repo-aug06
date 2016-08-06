@@ -45,10 +45,10 @@ public class AppMain
 		if(helpers.size() > 0) return;
 
 		helpers.put(StaticFileMapperIcon.class, 
-				new StaticFileMapperIcon("C:/opt/data-icons"));
+				new StaticFileMapperIcon("C:/opt/data-icons", "reform/icons") );
 		
 		helpers.put(StaticFileMapperImage.class, 
-				new StaticFileMapperImage("C:/opt/data-images"));
+				new StaticFileMapperImage("C:/opt/data-images", "reform/images") );
 	}
 
 	public static void main(String[] args)

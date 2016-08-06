@@ -1,5 +1,6 @@
 package apps.niknak.controllers.g1_single;
 
+import java.io.File;
 import java.lang.reflect.Method;
 
 import org.neabulae.rmap.RequestTarget;
@@ -108,5 +109,22 @@ public class __Perspective1 extends RequestTarget
 		m.invoke(this);
 	}
 
-
+	
+	protected void printImage(File fk, String lk) 
+	{
+		out.println("<div class='col-md-3'>");
+		
+		out.println("<div class='panel panel-default'>");
+		out.println("<div class='panel-body'>");
+		out.image(lk, "image");				
+		out.println("</div>");
+		
+		out.println("<div class='panel-footer'>");
+		out.println(fk.getName());
+		out.println("</div>");
+		
+		out.println("</div>");
+		
+		out.println("</div>");
+	}
 }
