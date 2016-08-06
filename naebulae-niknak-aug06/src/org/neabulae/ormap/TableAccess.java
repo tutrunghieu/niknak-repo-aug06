@@ -2,25 +2,84 @@ package org.neabulae.ormap;
 
 import java.util.List;
 
-public interface TableAccess 
+import org.naebulae.util.Joiner;
+
+public abstract class TableAccess 
 {
-	String tableNameFromClass(Class<?> cl)throws Exception;
 	
-	void dropAllTables()throws Exception;
-	List<String> getTableNames()throws Exception;
+	public void dropAllTables() 
+	throws Exception
+	{
+	}
 	
-	void insert(Class<?> tname, Object row)throws Exception;
-	void insert(String tname, Object row) throws Exception;
+	public String tableNameFromClass(Class<?> tname) 
+	{
+		return tname.getSimpleName().toLowerCase();
+	}
 	
-	void delete(String tname, FuncWhere where)throws Exception;
-	void delete(Class<?> tname, FuncWhere where)throws Exception;
 	
-	void update(String tname, FuncWhere where, FuncUpdater set)throws Exception;
-	void update(Class<?> tname, FuncWhere where, FuncUpdater set)throws Exception;
+	public abstract List<String> selectTableNames() 
+	throws Exception;
+	
+	public abstract List<Object> select(String tname) 
+	throws Exception;
 
-	List<Object> fetchRowsAsMap(String tname) throws Exception;
-
-	void print(String tk)throws Exception;
-	void print(Class<?> tk)throws Exception;
+	public abstract void insert(String tname, Object row) 
+	throws Exception;
 	
+	public abstract void delete(String tname, FuncWhere lf) 
+	throws Exception;
+
+	public abstract void update(String tname, FuncWhere lf, FuncUpdater src)
+	throws Exception;
+	
+
+	
+	public List<Object> select(Class<?> tname) 
+	throws Exception
+	{
+		return select(this.tableNameFromClass(tname));
+	}
+	
+	public void insert(Class<?> tname, Object row) 
+	throws Exception
+	{
+		insert(this.tableNameFromClass(tname), row);
+	}
+	
+
+	
+	
+	
+	public void delete(Class<?> tname, FuncWhere lf)
+	throws Exception
+	{
+		delete(this.tableNameFromClass(tname), lf);
+	}
+	
+
+	
+	public void update(Class<?> tname, FuncWhere lf, FuncUpdater src)
+	throws Exception
+	{
+		update(this.tableNameFromClass(tname), lf, src);
+	}
+	
+	public void print(Class<?> cl) 
+	throws Exception
+	{
+		print(this.tableNameFromClass(cl));
+	}
+	
+	public void print(String tname)
+	throws Exception
+	{
+		List<Object> rows = this.select(tname);
+		for(Object rk: rows) 
+		{
+			System.out.println("======" + tname + ":" + rk.hashCode());
+			Joiner.start("\r\n").printMap(rk);
+		}
+		
+	}	
 }

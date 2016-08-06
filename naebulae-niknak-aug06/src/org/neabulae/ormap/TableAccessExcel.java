@@ -17,15 +17,12 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import org.naebulae.util.Joiner;
 
-import apps.niknak.services.ExcelDataAccess;
-
-public class TableAccessExcel implements TableAccess
+public class TableAccessExcel extends TableAccess
 {
-	private Object inputObject;
-	private InputStream inputStream;
-	private Workbook workbook;
+	protected Object inputObject;
+	protected InputStream inputStream;
+	protected Workbook workbook;
 
 	public TableAccessExcel(URL u) 
 	throws Exception
@@ -42,8 +39,15 @@ public class TableAccessExcel implements TableAccess
 		inputStream = new FileInputStream(f);
 		workbook = getWorkbook(f);
 	}
+	
+	
+	protected String getCellValue(Cell ck, DataFormatter formatter) 
+	{
+		if(ck==null) return "";
+		return formatter.formatCellValue(ck);	
+	}
 
-	public static Workbook getWorkbook(File f)
+	protected Workbook getWorkbook(File f)
     throws Exception 
 	{
 	    String fname = f.getName();
@@ -53,17 +57,12 @@ public class TableAccessExcel implements TableAccess
 	    else return null;
 	}
 	
-	public static Workbook getWorkbook(URL f, String ext)
+	protected Workbook getWorkbook(URL f, String ext)
     throws Exception 
 	{
 	    if (ext.endsWith("xlsx")) return new XSSFWorkbook(f.openStream());
 	    else if (ext.endsWith("xls")) return new HSSFWorkbook(f.openStream());
 	    else return null;
-	}
-	@Override
-	public String tableNameFromClass(Class<?> cl) throws Exception 
-	{
-		return cl.getSimpleName().toLowerCase();
 	}
 	
 	@Override
@@ -71,8 +70,28 @@ public class TableAccessExcel implements TableAccess
 	{
 	}
 
+
 	@Override
-	public List<String> getTableNames() throws Exception 
+	public void insert(String tname, Object row) throws Exception {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void delete(String tname, FuncWhere lf) throws Exception {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void update(String tname, FuncWhere lf, FuncUpdater src) throws Exception {
+		// TODO Auto-generated method stub
+		
+	}
+	
+
+	@Override
+	public List<String> selectTableNames() throws Exception 
 	{
 		List<String> res = new ArrayList<String> ();
 		
@@ -84,43 +103,8 @@ public class TableAccessExcel implements TableAccess
 		return res;
 	}
 
-	@Override
-	public void insert(Class<?> tname, Object row) throws Exception {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void insert(String tname, Object row) throws Exception {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void delete(String tname, FuncWhere where) throws Exception {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void delete(Class<?> tname, FuncWhere where) throws Exception {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void update(String tname, FuncWhere where, FuncUpdater set) throws Exception {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void update(Class<?> tname, FuncWhere where, FuncUpdater set) throws Exception {
-		// TODO Auto-generated method stub
-		
-	}
 	
-	public List<Object> fetchRowsAsMap(String tname) 
+	public List<Object> select(String tname) 
 	{
 		return fetchRowsAsMap(workbook.getSheet(tname));
 	}
@@ -159,32 +143,6 @@ public class TableAccessExcel implements TableAccess
 		} //for each row
 		
 		return rows;
-	}
-	
-	private String getCellValue(Cell ck, DataFormatter formatter) 
-	{
-		if(ck==null) return "";
-		return formatter.formatCellValue(ck);	
-	}
-
-	@Override
-	public void print(String tname) throws Exception 
-	{
-		List<Object> rows = this.fetchRowsAsMap(tname);
-		for(Object rk: rows) 
-		{
-			System.out.println("======" + tname + ":" + rk.hashCode());
-			Joiner.start("\r\n").printMap(rk);
-		}
-		
-	}
-	
-
-	@Override
-	public void print(Class<?> tk) throws Exception 
-	{
-		// TODO Auto-generated method stub
-		
 	}
 
 

@@ -4,14 +4,13 @@ import org.naebulae.util.Joiner;
 import org.neabulae.ormap.FuncUpdater;
 import org.neabulae.ormap.FuncWhere;
 import org.neabulae.ormap.TableAccess;
-import org.neabulae.ormap.TableAccessJessie;
 
-public class test2_insert_update_delete_jessie 
+public class test3_mongo 
 {
 	public static void main(String[] args) 
 	throws Exception
 	{
-		TableAccess db = new TableAccessJessie("c:/opt/data-jessie");
+		TableAccess db = new TableAccessMongo("localhost", 27017, "test-db1");
 		
 		db.dropAllTables();
 		
@@ -29,8 +28,8 @@ public class test2_insert_update_delete_jessie
 				new FuncUpdater("userName", "Nguyễn Anh Cường 123", 
 						"userEmail1", "cuong1@gmail.com"));
 		
-		for(String tk: db.getTableNames())
-		for(Object rj: db.fetchRowsAsMap(tk))
+		for(String tk: db.selectTableNames())
+		for(Object rj: db.select(tk))
 		{
 			System.out.println("=========" + tk);
 			Joiner.start("\r\n").printMap(rj);		
