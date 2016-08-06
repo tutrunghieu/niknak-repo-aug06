@@ -22,14 +22,7 @@ public class AppMain
 	
 	public static void processRequest(HttpServletRequest request, HttpServletResponse response)
 	{
-		if(helpers.size()==0)
-		{
-			helpers.put(StaticFileMapperIcon.class, 
-					new StaticFileMapperIcon("C:/opt/data-icons"));
-			
-			helpers.put(StaticFileMapperImage.class, 
-					new StaticFileMapperImage("C:/opt/data-images"));
-		}
+		appendHelpers(helpers);
 				
 		try 
 		{
@@ -37,8 +30,6 @@ public class AppMain
 			System.out.println("Switching to: " + r.getName());
 		
 			RequestTarget tar = r.newInstance();
-			
-			
 			tar.enrichRequest(mapper, helpers, request, response);			
 			tar.processRequest();
 		}
@@ -48,6 +39,17 @@ public class AppMain
 			System.out.println("============ Controller mapping error");
 			xp.printStackTrace(System.out);
 		}		
+	}
+
+	public static void appendHelpers(RequestHeplers h) 
+	{
+		if(helpers.size() > 0) return;
+
+		helpers.put(StaticFileMapperIcon.class, 
+				new StaticFileMapperIcon("C:/opt/data-icons"));
+		
+		helpers.put(StaticFileMapperImage.class, 
+				new StaticFileMapperImage("C:/opt/data-images"));
 	}
 
 	public static void main(String[] args)
