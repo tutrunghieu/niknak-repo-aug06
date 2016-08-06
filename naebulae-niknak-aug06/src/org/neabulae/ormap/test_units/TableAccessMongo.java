@@ -8,9 +8,9 @@ import org.neabulae.ormap.TableAccess;
 
 public class TableAccessMongo extends TableAccess 
 {
-	private String dataHost;
-	private int dataPort;
-	private String dataName;
+	private String dataHost = "localhost";
+	private int dataPort = 27017;
+	private String dataName = "null-database";
 
 	public TableAccessMongo(String host, int port, String name) 
 	{
