@@ -6,14 +6,12 @@ import java.lang.reflect.Modifier;
 import java.util.Map;
 import java.util.TreeMap;
 
-import apps.niknak.controllers.HomeController;
-
 public class RequestMapper  
 {
 	public static boolean DEBUG = false;
 	
 
-	public static RequestMapper start(Class<HomeController> c0) 
+	public static RequestMapper start(Class<?> c0) 
 	{
 		RequestMapper m = new RequestMapper();
 		
