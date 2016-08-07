@@ -1,10 +1,12 @@
-package org.neabulae.ormap.test_units;
+package tasks.neabulae.ormap.aug07_testing;
 
 public class Tab_Customer 
 {
 	public String userName;
 	public String userEmail;
-	public String userPoints;
+	
+	public String userPoints = Math.random() + "";
+	public String userDevice = "dev" + Math.random() + "";
 
 	public Tab_Customer()
 	{

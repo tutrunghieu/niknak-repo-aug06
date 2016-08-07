@@ -1,4 +1,4 @@
-package org.neabulae.ormap;
+package org.neabulae.ormap.jessie;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -7,6 +7,9 @@ import java.util.List;
 
 import org.apache.commons.io.FileUtils;
 import org.codehaus.jackson.map.ObjectMapper;
+import org.neabulae.ormap.FuncUpdater;
+import org.neabulae.ormap.FuncWhere;
+import org.neabulae.ormap.TableAccess;
 
 public class TableAccessJessie extends TableAccess
 {

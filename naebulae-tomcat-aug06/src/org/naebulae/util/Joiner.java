@@ -14,6 +14,13 @@ public class Joiner {
 		return r;
 	}
 	
+	public void printObjectOrMap(Object src)
+	throws Exception
+	{
+		if(src instanceof Map) printMap(src);
+		else printObject(src);
+	}
+	
 	public void printObject(Object src)
 	throws Exception
 	{
@@ -28,6 +35,7 @@ public class Joiner {
 		System.out.println(res);
 	}
 
+	@SuppressWarnings("unchecked")
 	public void printMap(Object src)
 	throws Exception
 	{

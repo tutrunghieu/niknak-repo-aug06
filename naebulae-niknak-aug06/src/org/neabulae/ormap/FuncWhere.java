@@ -5,7 +5,7 @@ import java.util.Map;
 
 public class FuncWhere 
 {
-	private Map<String, String> vals = new LinkedHashMap<String, String>();
+	protected Map<String, String> vals = new LinkedHashMap<String, String>();
 	
 	public FuncWhere(String... args)
 	{

@@ -4,6 +4,9 @@ import java.util.List;
 
 import org.naebulae.util.Joiner;
 
+import com.mongodb.MongoClient;
+import com.mongodb.client.MongoDatabase;
+
 public abstract class TableAccess 
 {
 	
@@ -82,4 +85,16 @@ public abstract class TableAccess
 		}
 		
 	}	
+	
+	
+	public int countRows(Class<?> cl) 
+	{
+		return countRows(this.tableNameFromClass(cl));
+	}
+	
+	public int countRows(String tname)
+	{
+		return 0;
+	}
+	
 }

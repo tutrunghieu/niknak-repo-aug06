@@ -1,4 +1,4 @@
-package org.neabulae.ormap;
+package org.neabulae.ormap.xlsx;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -17,6 +17,9 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.neabulae.ormap.FuncUpdater;
+import org.neabulae.ormap.FuncWhere;
+import org.neabulae.ormap.TableAccess;
 
 public class TableAccessExcel extends TableAccess
 {

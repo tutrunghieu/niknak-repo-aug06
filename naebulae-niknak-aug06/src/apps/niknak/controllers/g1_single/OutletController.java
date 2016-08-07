@@ -14,7 +14,7 @@ public class OutletController  extends __Perspective1
 	public void indexAction()
 	throws Exception
 	{
-		out.printStyles(".image { width: 95%; border: solid 1px #aeaeae; border-radius: 3px; }"); 
+		out.printStyles(".image { width: 100%; border: solid 1px #aeaeae; border-radius: 3px; }"); 
 		StaticFileMapperImage db = this.helper(StaticFileMapperImage.class);
 		
 		List<File> files = db.readFiles();
