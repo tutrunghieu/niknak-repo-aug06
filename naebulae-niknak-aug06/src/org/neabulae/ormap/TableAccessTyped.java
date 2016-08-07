@@ -4,6 +4,7 @@ import java.util.List;
 
 public interface TableAccessTyped 
 {
+	public void dropAllTables() throws Exception;
 	
 	public<T1> void insertTyped(Class<T1> tname, T1 values) throws Exception;
 	

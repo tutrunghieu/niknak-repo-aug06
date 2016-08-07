@@ -4,7 +4,9 @@ import java.util.List;
 
 import org.bson.Document;
 
-public interface TableAccessNative {
+public interface TableAccessNative 
+{
+	public void dropAllTables() throws Exception;
 	
 	public void insertNative(Class<?> tname, Document values) throws Exception;
 	
@@ -32,5 +34,6 @@ public interface TableAccessNative {
 	public List<Document> selectNative(String tname, Document where) throws Exception;
 	
 	public Document selectOneNative(String tname, Document where) throws Exception;
+
 	
 }

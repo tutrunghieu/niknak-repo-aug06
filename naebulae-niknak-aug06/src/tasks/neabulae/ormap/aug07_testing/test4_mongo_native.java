@@ -4,6 +4,7 @@ import java.lang.reflect.Field;
 
 import org.bson.Document;
 import org.naebulae.util.Joiner;
+import org.neabulae.ormap.TableAccessNative;
 import org.neabulae.ormap.mongo.TableAccessMongo;
 
 public class test4_mongo_native 
@@ -11,7 +12,7 @@ public class test4_mongo_native
 	public static void main(String[] args) 
 	throws Exception
 	{
-		TableAccessMongo db = new TableAccessMongo("test-db1");
+		TableAccessNative db = new TableAccessMongo("test-db1");
 		
 		db.dropAllTables();
 		
@@ -20,6 +21,7 @@ public class test4_mongo_native
 		db.insertNative(Tab_User.class, doc(new Tab_User("Nguyễn Anh Cường", "cuong@gmail.com")) );
 		
 		db.deleteNative(Tab_User.class, doc("userEmail", "binh@gmail.com") );
+		
 		
 		db.updateNative(Tab_User.class,
 				doc("userEmail", "cuong@gmail.com"),
