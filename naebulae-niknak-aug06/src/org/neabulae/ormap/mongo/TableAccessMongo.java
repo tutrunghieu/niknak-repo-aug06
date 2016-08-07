@@ -188,5 +188,99 @@ public class TableAccessMongo extends TableAccess
 		return res;		
 	}
 		
+
+	public void insertNative(String tname, Document values)
+	throws Exception 
+	{ 
+		MongoClient mongo = new MongoClient(dataHost, dataPort);
+		
+		MongoDatabase db = mongo.getDatabase(dataName);
+		db.getCollection(tname).insertOne(values);
+		
+		mongo.close();					
+	}
+	
+	public void deleteNative(String tname, Document where)
+	throws Exception 
+	{
+		MongoClient mongo = new MongoClient(dataHost, dataPort);
+		
+		System.out.println("Deleting " + where);
+		MongoDatabase db = mongo.getDatabase(dataName);
+		db.getCollection(tname).deleteOne(where);
+		
+		mongo.close();							
+	}
+
+	public void updateNative(String tname, Document where, Document values) 
+	throws Exception 
+	{
+		MongoClient mongo = new MongoClient(dataHost, dataPort);
+		
+		MongoDatabase db = mongo.getDatabase(dataName);
+		
+		System.out.println("Updating " + where);
+		System.out.println(" set " + values);
+		db.getCollection(tname).updateOne(where, new Document("$set", values) );
+		
+		mongo.close();							
+	}
+		
+	public List<Document> selectNative(String tname) throws Exception 
+	{ 
+		MongoClient mongo = new MongoClient(dataHost, dataPort);
+		
+		
+		List<Document> res = new ArrayList<Document>();
+		
+		MongoDatabase db = mongo.getDatabase(dataName);
+		for( Document rk: db.getCollection(tname).find())
+		{
+			res.add(rk);
+		}
+		
+		mongo.close();							
+		
+		return res; 
+	}
+	
+	public List<Document> selectNative(String tname, Document where) throws Exception 
+	{
+		MongoClient mongo = new MongoClient(dataHost, dataPort);
+		
+		
+		List<Document> res = new ArrayList<Document>();
+		
+		MongoDatabase db = mongo.getDatabase(dataName);
+		for( Document rk: db.getCollection(tname).find(where))
+		{
+			res.add(rk);
+		}
+		
+		mongo.close();							
+		
+		return res; 
+	}
+	
+	public Document selectOneNative(String tname, Document where)
+	throws Exception 
+	{
+		MongoClient mongo = new MongoClient(dataHost, dataPort);
+		
+		
+		Document found = null;
+		
+		MongoDatabase db = mongo.getDatabase(dataName);
+		for( Document rk: db.getCollection(tname).find(where))
+		{
+			found = rk;
+			break;
+		}
+		
+		mongo.close();							
+		
+		return found; 
+	}
+
 	
 }
