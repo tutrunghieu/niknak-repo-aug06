@@ -99,6 +99,13 @@ public class RequestTarget
 		System.out.println(string + ": " + url);
 	}
 
+	public String baseUrl() 
+	{
+		String local = request.getRequestURL().toString();
+		local = local.substring(0, local.indexOf('/', 8));
+		
+		return local + "/" + requestUri.split("\\/")[1];
+	}
 	
 	public String baseUri() 
 	{
